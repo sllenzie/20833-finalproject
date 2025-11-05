@@ -9,3 +9,23 @@ h2 {
 p {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+header, footer {
+    border-style:solid;
+    border-color: cadetblue;
+}
+
+nav {
+    border-style:solid;
+    border-color: rgb(168, 17, 125);
+}
+
+main {
+    border-style:solid;
+    border-color: rgb(17, 168, 45);
+}
+
+section {
+    border-style:solid;
+    border-color: rgb(168, 17, 17);
+}
