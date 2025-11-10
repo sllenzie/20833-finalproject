@@ -209,3 +209,137 @@ nav {
     top: 0;
     z-index: 100;
 }
+
+/* =========================
+   Data Visualizations
+   ========================= */
+/* Container for charts and images */
+.viz-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.viz-container img {
+    max-width: 100%;           /* Responsive: never wider than container */
+    height: auto;              /* Maintain aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+/* Figure captions */
+.viz-container figcaption {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Grid layout for multiple visualizations */
+.viz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .viz-grid {
+        grid-template-columns: 1fr;  /* Single column on mobile */
+    }
+}
+
+/* =========================
+   Code Blocks
+   ========================= */
+/* Improve existing pre/code styling */
+pre {
+    background: #2d2d2d;          /* Dark background */
+    color: #f8f8f2;               /* Light text */
+    border: none;
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Inline code (inside paragraphs) */
+p code, li code {
+    background: #f4f4f4;
+    color: #c7254e;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Code block titles */
+.code-title {
+    background: #1e1e1e;
+    color: #9cdcfe;
+    padding: 0.5rem 1rem;
+    border-radius: 8px 8px 0 0;
+    font-family: monospace;
+    font-size: 0.85rem;
+    margin-bottom: -0.5rem;
+}
+
+.code-title + pre {
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+}
+
+/* =========================
+   Data Tables (extends existing styles)
+   ========================= */
+.results-table {
+    font-size: 0.95rem;
+    margin: 1.5rem auto;
+    max-width: 700px;
+}
+
+.results-table th {
+    background: var(--primary-color);
+    color: white;
+}
+
+.results-table td {
+    text-align: center;
+}
+
+.results-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Highlight key rows */
+.results-table tr.highlight {
+    background: #fff3cd;
+    font-weight: bold;
+}
+
+/* =========================
+   Framework Connections
+   ========================= */
+.framework-callout {
+    background: linear-gradient(135deg, #f0e7f8, #e9d5ff);
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.framework-callout h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.framework-callout strong {
+    color: var(--secondary-color);
+}
+
