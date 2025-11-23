@@ -236,6 +236,23 @@
         <figcaption>Figure 2: Distribution of term frequencies across dataset for Do The Right Thing</figcaption>
     </figure>
 
+    <h2>Selma</h2>
+    <p>Analysis of 612 reviews revealed distinct sentiment patterns...</p>
+    <figure class="viz-container">
+        <img src="images/selma/selma-sentiment.png"
+             alt="Pie chart showing the sentiment analysis results for Selma reviews.">
+        <figcaption>Figure 3: Distribution of sentiment scores across dataset for Selma</figcaption>
+    </figure>
+    <figure class="viz-container">
+        <img src="images/selma/selma-termfrequency.png"
+                alt="Bar chart showing the term frequency results for Selma reviews.">
+        <figcaption>Figure 4: Distribution of term frequencies across dataset for Selma</figcaption>
+    </figure>
+
+
+
+
+
 
 
     <!-- Multiple visualizations in a grid -->
@@ -256,18 +273,41 @@
 
 <section id="analysis">
     <h2>Analysis Process</h2>
-    <p>I used the <code>vaderSentiment</code> library to analyze tweet sentiment:</p>
+    <p>We used the <code>vaderSentiment</code> library to analyze review sentiment for all of the films. Below is a snippet of the code we used, which was identical across all six films:</p>
 
     <div class="code-title">sentiment_analysis.py</div>
-    <pre><code>from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    <pre><code># Analyze sentiment patterns in your data
+print("Do The Right Thing: SENTIMENT ANALYSIS SUMMARY")
+print("=" * 35)
 
-analyzer = SentimentIntensityAnalyzer()
+# Basic statistics
+print(f"Total entries analyzed: {len(df)}")
+print(f"Average sentiment: {df['sentiment_score'].mean():.3f}")
+print(f"Most positive entry: {df['sentiment_score'].max():.3f}")
+print(f"Most negative entry: {df['sentiment_score'].min():.3f}")
+print(f"Standard deviation: {df['sentiment_score'].std():.3f}")
 
-for tweet in tweets:
-    scores = analyzer.polarity_scores(tweet)
-    print(f"Compound score: {scores['compound']}")</code></pre>
+# Categorize sentiments
+positive = len(df[df['sentiment_score'] > 0.1])
+neutral = len(df[(df['sentiment_score'] >= -0.1) & (df['sentiment_score'] <= 0.1)])
+negative = len(df[df['sentiment_score'] < -0.1])
 
-    <p>The compound score ranges from -1 (most negative) to +1 (most positive).</p>
+print(f"\nSentiment distribution:")
+print(f"Positive (>0.1): {positive} ({positive/len(df)*100:.1f}%)")
+print(f"Neutral (-0.1 to 0.1): {neutral} ({neutral/len(df)*100:.1f}%)")
+print(f"Negative (<-0.1): {negative} ({negative/len(df)*100:.1f}%)")
+
+#find most positive and negative examples (because that's what's juciest and most interesting)
+most_positive = df.loc[df['sentiment_score'].idxmax()]
+most_negative = df.loc[df['sentiment_score'].idxmin()]
+
+print(f"📈 MOST POSITIVE ENTRY (score: {most_positive['sentiment_score']:.3f}):")
+print(f"Text: {most_positive['clean_text_sentiment'][:200]}...")
+print()
+print(f"📉 MOST NEGATIVE ENTRY (score: {most_negative['sentiment_score']:.3f}):")
+print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
+
+    <p>The compound score ranges from -1 (most negative) to +1 (most positive). To view all data sets, and all code blocks in their entirety, click <a href="https://drive.google.com/drive/folders/1wwMq2huxN_oi2FskChBgsIB31mNGqzLL?usp=sharing" target="_blank" rel="noopener noreferrer">here</a>.</p>
 </section>
 
     </section>
