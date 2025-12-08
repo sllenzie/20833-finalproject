@@ -15,7 +15,6 @@
             <li><a href="#methods">Methods</a></li>
             <li><a href="#timeline">Timeline</a></li>
             <li><a href="#background">Historical Background</a></li>
-            <li><a href="#charts">Charts</a></li>
             <li><a href="#findings">Findings</a></li>
             <li><a href="#reflection">Reflection</a></li>
             <li><a href="#cited">Works Cited</a></li>
@@ -65,7 +64,7 @@
         <h3>Limitations and Data Quality</h3>
 
             <p>Our methods come with several limitations. First, online reviews are self-selected data: individuals motivated to write reviews may hold stronger opinions than the average viewer. Second, review platforms differ in audience demographics, which may skew tone or vocabulary. A third limitation involves time-stamping: not all reviews indicate when they were written, which affects our ability to precisely measure pre- versus post-2020 shifts. Finally, sentiment tools can misinterpret sarcasm, mixed emotions, or culturally specific language, leading to scores that flatten nuance.</p>
-            
+
             <p>Data quality also varies significantly by film. Older films like Do the Right Thing have reviews written years after release, reflecting retrospective rather than immediate reactions. Newer films have more immediate responses influenced by contemporary political climates. Despite these limitations, the consistency of thematic patterns across platforms and films suggests that the dataset is robust enough to reveal meaningful trends.</p>
 
     </section>
@@ -246,23 +245,103 @@
 
     </section>
 
-    <section id="analysis">
+<section id="analysis">
+    <h2>Analysis Process</h2>
+    <p>We used the <code>vaderSentiment</code> library to analyze review sentiment for all of the films. Below is a snippet of the code we used, which was identical across all six films:</p>
 
-        <h2>Analysis Figures</h2>
+    <div class="code-title">sentiment_analysis.py</div>
+    <pre><code># Analyze sentiment patterns in your data
+print("Do The Right Thing: SENTIMENT ANALYSIS SUMMARY")
+print("=" * 35)
 
-        <section id="analysis">
-            
-    <h2>Do The Right Thing</h2>
+# Basic statistics
+print(f"Total entries analyzed: {len(df)}")
+print(f"Average sentiment: {df['sentiment_score'].mean():.3f}")
+print(f"Most positive entry: {df['sentiment_score'].max():.3f}")
+print(f"Most negative entry: {df['sentiment_score'].min():.3f}")
+print(f"Standard deviation: {df['sentiment_score'].std():.3f}")
+
+# Categorize sentiments
+positive = len(df[df['sentiment_score'] > 0.1])
+neutral = len(df[(df['sentiment_score'] >= -0.1) & (df['sentiment_score'] <= 0.1)])
+negative = len(df[df['sentiment_score'] < -0.1])
+
+print(f"\nSentiment distribution:")
+print(f"Positive (>0.1): {positive} ({positive/len(df)*100:.1f}%)")
+print(f"Neutral (-0.1 to 0.1): {neutral} ({neutral/len(df)*100:.1f}%)")
+print(f"Negative (<-0.1): {negative} ({negative/len(df)*100:.1f}%)")
+
+#find most positive and negative examples (because that's what's juciest and most interesting)
+most_positive = df.loc[df['sentiment_score'].idxmax()]
+most_negative = df.loc[df['sentiment_score'].idxmin()]
+
+print(f"📈 MOST POSITIVE ENTRY (score: {most_positive['sentiment_score']:.3f}):")
+print(f"Text: {most_positive['clean_text_sentiment'][:200]}...")
+print()
+print(f"📉 MOST NEGATIVE ENTRY (score: {most_negative['sentiment_score']:.3f}):")
+print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
+
+    <p>The compound score ranges from -1 (most negative) to +1 (most positive). To view all data sets, and all code blocks in their entirety, click <a href="https://drive.google.com/drive/folders/1wwMq2huxN_oi2FskChBgsIB31mNGqzLL?usp=sharing" target="_blank" rel="noopener noreferrer">here</a>.</p>
+</section>
+
+    <section id="findings">
+
+        <h2>Findings</h2>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi fugit at tempore assumenda facilis sequi, omnis quod ducimus voluptas ut quo voluptate consequatur corrupti minus exercitationem rem facere? Consequatur, repudiandae.</p>
+
+        <h3>Term Frequency</h3>
+        
+            <p>Through our analysis of term frequency across the six selected films, four major themes emerged: a strong focus on characters and history as central “characters” themselves, consistent attention to key actors and figures, and clear repetition patterns that reveal what viewers care about most. It is clear from reviewers’ comments that many of the responses are honest, personal, and reflective of both individual opinion and the broader social issues present in the cultural climate of the time.</p>
+
+            <p>The first major theme we identified within analyzing term frequency is how the data reflects character-centered priorities, especially around main characters, executive producers, and lead actors. In each of our six movies, lead characters and actor names made the top 20 list, and many appeared within the highest half. Something unique about this content is how much of an impact actor choice has on the effectiveness of the film. In films such as The Help, we identified that the attention on Emma Stone suggests a limited understanding of the Black experience, because viewers were more focused on her than on the actual stories of Black women. A similar repetition can be seen in reviews for The Blind Side, where Sandra Bullock received significantly more praise than the film’s themes, message, and overall narrative choices.</p>
+
+            <figure class="viz-container">
+                <img src="images/the-help/thehelp-termfrequency.png"
+                alt="Bar chart showing the term frequency results for The Help reviews.">
+                <figcaption>Distribution of term frequencies across dataset for The Help</figcaption>
+            </figure>
+
+            <figure class="viz-container">
+                <img src="images/the-blind-side/blindside-termfrequency.png"
+                alt="Bar chart showing the term frequency results for The Blind Side reviews.">
+                <figcaption>Distribution of term frequencies across dataset for The Blind Side</figcaption>
+            </figure>
+
+            <p>Throughout audiences gravitate toward who is telling the story and how they tell it. This matters because one of the clearest shifts post-2020 is the increased awareness of who gets centered in racial narratives. Do the Right Thing offers a clear example of how reviewers anchor their responses in character-centered analysis. The top words include Mookie, Sal, characters, and even Spike Lee’s own name, appearing hundreds of times. Reviewers weren’t just reacting to the film overall, we felt that they were reacting to Spike Lee as a storyteller and as a character. Sal's frequency in the top 20 shows how much debate his character sparked, especially given his role in escalating tension that leads to Radio’s death. This emphasis mirrors what we saw in The Blind Side and The Help—viewers gravitate toward the people at the center of the story, often shaping their entire reaction around how these characters behave, what they represent, and how authentically they’re portrayed. These patterns reinforce the idea that when films deal with race, audiences respond first to the individuals embodying those racial tensions.</p>
+
+            <p>Another unique pattern we identified is how integrated historical terminology is across all datasets. This pattern tells us that audiences aren’t watching these films as “just movies.” They’re viewing them as representations of something bigger and they actively bring that historical awareness into their review writing. It is also important to note that the way reviewers discuss history varies depending on the film, revealing not only audience priorities but also the broader social, political, and cultural conversations happening at the time each movie was released.</p>
+
+            <p>Across the films, reviewers consistently anchor their opinions in historical vocabulary, treating history almost like an active character. For Selma, terms that made the top 20 like rights, civil, history, people, King, Jr., Martin, Luther show that reviewers speak with seriousness and formality. They focus on accuracy, legacy, and the emotional weight carried by Dr. King’s story. The Help provides a strong example of how reviewers treat history as an active force within race-centered films. Terms like book, white, black, and story show that viewers weren’t just thinking about the narrative—they were thinking about the 1960s Civil Rights era and how the film chose to present that moment. Many reviews reflected frustration with whose perspective was centered (Skeeter’s), which reveals that audiences were evaluating not just accuracy but ownership: who gets to tell historical stories of racism? Just like Selma rooted viewers in the Civil Rights movement and Hidden Figures re-centered forgotten NASA history, The Help sparked conversations about whether the film honored or diluted the realities of Black domestic workers. The repetition of historical identity terms demonstrates that reviewers were actively thinking about the past and how it was represented through a modern lens.  In The Blind Side, references to history appear softer and more sentimental. Words like story, true, life show that viewers are engaging with its “based on a true story” framing, but not necessarily with deeper historical or racial analysis. This matches the early-2010s “don’t see color” era, where many avoided discussing race directly and gravitated toward feel-good narratives.</p>
+
+            <figure class="viz-container">
+                <img src="images/selma/selma-termfrequency.png"
+                alt="Bar chart showing the term frequency results for Selma reviews.">
+                <figcaption>Figure 4: Distribution of term frequencies across dataset for Selma</figcaption>
+            </figure>
+
+            <p>Reviewers treat these movies as cultural documents, and their language mirrors the racial conversations and awareness levels of their respective release periods.</p>
+
+            <p>Term frequency also reveals what and from our discoveries—who—reviewers find most important. In Selma, the actor becomes inseparable from the icon. Mentions of Oyelowo, David, and the many versions of Kingshow that people judged the film heavily based on whether it authentically captured Dr. King’s legacy. Performance and embodiment mattered deeply. In The Blind Side, the actor actually overshadows the subject. Bullock and Sandra appear with extremely high frequency—higher than Michael Oher’s name. This reflects how viewers respond more strongly to Sandra Bullock’s performance than to the systemic issues embedded in the story. As you pointed out, this reinforces that the story is filtered through a white lens, centering the Tuohy family rather than Michael himself. In Hidden Figures, the emphasis shifts away from actors and toward the characters themselves. Instead of celebrity names, reviewers repeatedly mention women, Katherine, and three, demonstrating that they care most about who the story is about and the historical individuals being reclaimed. This supports your earlier point that the film’s main impact comes from historical visibility and representation. The Hate U Give perfectly illustrates how actor and character mentions highlight what matters most to viewers. Words like Starr, black, people, and message show that reviewers’ attention lands heavily on the protagonist and what she represents. Starr functions almost like a cultural mirror—reflecting contemporary conversations about police brutality, code-switching, and Black girlhood. Reviewers bring her up repeatedly because her character embodies the emotional core of the film’s political message. This focus mirrors how viewers obsess over Bullock in The Blind Side or King in Selma, but with an important difference: here, the central character is a young Black girl directly navigating the systemic issues being portrayed. The frequency of Starr’s name shows that, by this era, audiences are more actively centering the voices of marginalized characters rather than defaulting to white leads.  Across films, reviewers choose to “name” signals whose story they believe the film is really telling—whether that reflects reality or not.</p>
+
+            <p>Finally, the words that repeat—and the ones that don’t—reveal the strongest audience priorities. There are a few things from some of the films that are most telling. Selma has no words about racism in its top 20, racism is the backdrop; viewers assume it without naming it. The Blind Side has no identity-based words at all reviewers avoid discussing race, reflecting the colorblind lens of its era. Hidden Figures includes African audiences directly name race and identity, indicating a shift toward openly acknowledging representation This evolution maps onto broader cultural discourse: from avoiding race to acknowledging race to actively demanding representation. We also see strong evidence of urgency through repetition in Do the Right Thing. Terms like racial, racism, black, people, and neighborhood repeatedly appear alongside emotionally weighted words like right and thing (from the title). Reviewers emphasize these themes because the film is a raw, unfiltered depiction of escalating racial tension, police violence, and community anger. The repetition reveals not only what viewers noticed but what they felt compelled to talk about police brutality, racial conflict, moral ambiguity, and community responsibility. Unlike earlier films where race language is softened or avoided (The Blind Side), here we see explicit naming of racism, identity, and violence. By the time reviewers discuss The Hate U Give, this kind of explicit vocabulary becomes even more common, showing a continued cultural shift toward naming racial issues directly rather than talking around them.</p>
+
+            <figure class="viz-container">
+                <img src="images/the-hate-u-give/thehateugive-termfrequency.png"
+                    alt="Bar chart showing the term frequency results for The Hate U Give reviews.">
+                <figcaption>Figure 10: Distribution of term frequencies across dataset for The Hate U Give</figcaption>
+            </figure>
+
+            <p>The term-frequency patterns provide a clear timeline of how audiences have talked about race on screen over the last 15 years. Reviewers’ language shows how their priorities changed over time—from valuing a “good story,” to honoring “powerful history,” to finally seeking accurate visibility for overlooked communities.</p>
+
+            <p>Comparing how reviewers discuss characters, race, performance, story ownership, and thematic impact across these films reinforces one major insight: audience attitudes toward racial narratives have significantly evolved, especially in the wake of increased civil-rights activism around 2020. Reviewers have become more socially aware, more critical of who is centered, and more attentive to the politics of representation—not just what stories are told, but who gets to tell them.</p>
+
+     <h2>Do The Right Thing</h2>
     <p>Analysis of 441 reviews revealed distinct sentiment patterns...</p>
     <figure class="viz-container">
         <img src="images/do-the-right-thing/sentimentanalysis-dotherightthing.png"
              alt="Pie chart showing the sentiment analysis results for Do The Right Thing reviews.">
         <figcaption>Figure 1: Distribution of sentiment scores across dataset for Do The Right Thing</figcaption>
-    </figure>
-    <figure class="viz-container">
-        <img src="images/do-the-right-thing/termfrequency-dotherightthing.png"
-             alt="Pie chart showing the term frequency results for Do The Right Thing reviews.">
-        <figcaption>Figure 2: Distribution of term frequencies across dataset for Do The Right Thing</figcaption>
     </figure>
 
     <h2>Selma</h2>
@@ -272,11 +351,6 @@
              alt="Pie chart showing the sentiment analysis results for Selma reviews.">
         <figcaption>Figure 3: Distribution of sentiment scores across dataset for Selma</figcaption>
     </figure>
-    <figure class="viz-container">
-        <img src="images/selma/selma-termfrequency.png"
-                alt="Bar chart showing the term frequency results for Selma reviews.">
-        <figcaption>Figure 4: Distribution of term frequencies across dataset for Selma</figcaption>
-    </figure>
 
     <h2>Hidden Figures</h2>
     <p>Analysis of 481 reviews revealed distinct sentiment patterns...</p>
@@ -284,11 +358,6 @@
         <img src="images/hidden-figures/hiddenfigures-sentimentanalysis.png"
              alt="Pie chart showing the sentiment analysis results for Hidden Figures reviews.">
         <figcaption>Figure 5: Distribution of sentiment scores across dataset for Hidden Figures</figcaption>
-    </figure>
-    <figure class="viz-container">
-        <img src="images/hidden-figures/hiddenfigures-termfrequency.png"
-                alt="Bar chart showing the term frequency results for Hidden Figures reviews.">
-        <figcaption>Figure 6: Distribution of term frequencies across dataset for Hidden Figures</figcaption>
     </figure>
 
     <h2>The Blind Side</h2>
@@ -329,105 +398,6 @@
                 alt="Bar chart showing the term frequency results for The Help reviews.">
         <figcaption>Figure 12: Distribution of term frequencies across dataset for The Help</figcaption>
     </figure>
-
-
-
-    <!-- Multiple visualizations in a grid -->
-   <!-- <div class="viz-grid">
-        <figure class="viz-container">
-            <img src="images/topic-model.png"
-                 alt="LDA topic modeling visualization showing 5 distinct topics">
-            <figcaption>Figure 2: Topic clusters from LDA analysis</figcaption>
-        </figure>
-
-        <figure class="viz-container">
-            <img src="images/word-cloud.png"
-                 alt="Word cloud of most frequent terms in positive sentiment tweets">
-            <figcaption>Figure 3: Most common terms in positive tweets</figcaption>
-        </figure>
-    </div>-->
-</section>
-
-<section id="analysis">
-    <h2>Analysis Process</h2>
-    <p>We used the <code>vaderSentiment</code> library to analyze review sentiment for all of the films. Below is a snippet of the code we used, which was identical across all six films:</p>
-
-    <div class="code-title">sentiment_analysis.py</div>
-    <pre><code># Analyze sentiment patterns in your data
-print("Do The Right Thing: SENTIMENT ANALYSIS SUMMARY")
-print("=" * 35)
-
-# Basic statistics
-print(f"Total entries analyzed: {len(df)}")
-print(f"Average sentiment: {df['sentiment_score'].mean():.3f}")
-print(f"Most positive entry: {df['sentiment_score'].max():.3f}")
-print(f"Most negative entry: {df['sentiment_score'].min():.3f}")
-print(f"Standard deviation: {df['sentiment_score'].std():.3f}")
-
-# Categorize sentiments
-positive = len(df[df['sentiment_score'] > 0.1])
-neutral = len(df[(df['sentiment_score'] >= -0.1) & (df['sentiment_score'] <= 0.1)])
-negative = len(df[df['sentiment_score'] < -0.1])
-
-print(f"\nSentiment distribution:")
-print(f"Positive (>0.1): {positive} ({positive/len(df)*100:.1f}%)")
-print(f"Neutral (-0.1 to 0.1): {neutral} ({neutral/len(df)*100:.1f}%)")
-print(f"Negative (<-0.1): {negative} ({negative/len(df)*100:.1f}%)")
-
-#find most positive and negative examples (because that's what's juciest and most interesting)
-most_positive = df.loc[df['sentiment_score'].idxmax()]
-most_negative = df.loc[df['sentiment_score'].idxmin()]
-
-print(f"📈 MOST POSITIVE ENTRY (score: {most_positive['sentiment_score']:.3f}):")
-print(f"Text: {most_positive['clean_text_sentiment'][:200]}...")
-print()
-print(f"📉 MOST NEGATIVE ENTRY (score: {most_negative['sentiment_score']:.3f}):")
-print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
-
-    <p>The compound score ranges from -1 (most negative) to +1 (most positive). To view all data sets, and all code blocks in their entirety, click <a href="https://drive.google.com/drive/folders/1wwMq2huxN_oi2FskChBgsIB31mNGqzLL?usp=sharing" target="_blank" rel="noopener noreferrer">here</a>.</p>
-</section>
-
-    <section id="methodology">
-
-        <h2>Methodology</h2>
-
-            <p>We used the VADER sentiment analysis tool to evaluate the emotional tone of the reviews for each film. VADER is well-suited for this type of text and provides a compound score that summarizes the overall sentiment, though sometimes there is room for error due to the human nature of intention and tone. Additionally, we used term frequency analysis in order to determine what most of the reviews for the films focused on, and that combined with the sentiment analysis showed us clear shifts in attitudes of audiences based on the popular attitudes of the time.</p>
-
-    </section>
-
-    <section id="findings">
-
-        <h2>Findings</h2>
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi fugit at tempore assumenda facilis sequi, omnis quod ducimus voluptas ut quo voluptate consequatur corrupti minus exercitationem rem facere? Consequatur, repudiandae.</p>
-
-            <section id="findings">
-    <h2>Topic Distribution</h2>
-    <p>LDA analysis identified five major topics:</p>
-
-    <table class="results-table">
-        <thead>
-            <tr>
-                <th>Topic</th>
-                <th>Top Keywords</th>
-                <th>% of Corpus</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="highlight">
-                <td>Topic 1: Climate Action</td>
-                <td>climate, change, action, urgent</td>
-                <td>32%</td>
-            </tr>
-            <tr>
-                <td>Topic 2: Policy Debate</td>
-                <td>policy, government, debate</td>
-                <td>28%</td>
-            </tr>
-            <!-- Add more topics -->
-        </tbody>
-    </table>
-</section>
 
     </section>
 
