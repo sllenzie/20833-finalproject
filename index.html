@@ -317,24 +317,32 @@ print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
             <figure class="viz-container">
                 <img src="images/selma/selma-termfrequency.png"
                 alt="Bar chart showing the term frequency results for Selma reviews.">
-                <figcaption>Figure 4: Distribution of term frequencies across dataset for Selma</figcaption>
+                <figcaption>Distribution of term frequencies across dataset for Selma</figcaption>
             </figure>
 
             <p>Reviewers treat these movies as cultural documents, and their language mirrors the racial conversations and awareness levels of their respective release periods.</p>
 
             <p>Term frequency also reveals what and from our discoveries—who—reviewers find most important. In Selma, the actor becomes inseparable from the icon. Mentions of Oyelowo, David, and the many versions of Kingshow that people judged the film heavily based on whether it authentically captured Dr. King’s legacy. Performance and embodiment mattered deeply. In The Blind Side, the actor actually overshadows the subject. Bullock and Sandra appear with extremely high frequency—higher than Michael Oher’s name. This reflects how viewers respond more strongly to Sandra Bullock’s performance than to the systemic issues embedded in the story. As you pointed out, this reinforces that the story is filtered through a white lens, centering the Tuohy family rather than Michael himself. In Hidden Figures, the emphasis shifts away from actors and toward the characters themselves. Instead of celebrity names, reviewers repeatedly mention women, Katherine, and three, demonstrating that they care most about who the story is about and the historical individuals being reclaimed. This supports your earlier point that the film’s main impact comes from historical visibility and representation. The Hate U Give perfectly illustrates how actor and character mentions highlight what matters most to viewers. Words like Starr, black, people, and message show that reviewers’ attention lands heavily on the protagonist and what she represents. Starr functions almost like a cultural mirror—reflecting contemporary conversations about police brutality, code-switching, and Black girlhood. Reviewers bring her up repeatedly because her character embodies the emotional core of the film’s political message. This focus mirrors how viewers obsess over Bullock in The Blind Side or King in Selma, but with an important difference: here, the central character is a young Black girl directly navigating the systemic issues being portrayed. The frequency of Starr’s name shows that, by this era, audiences are more actively centering the voices of marginalized characters rather than defaulting to white leads.  Across films, reviewers choose to “name” signals whose story they believe the film is really telling—whether that reflects reality or not.</p>
 
+            <figure class="viz-container">
+                <img src="images/the-help/thehelp-termfrequency.png"
+                alt="Bar chart showing the term frequency results for The Help reviews.">
+                <figcaption>Distribution of term frequencies across dataset for The Help</figcaption>
+            </figure>
+
             <p>Finally, the words that repeat—and the ones that don’t—reveal the strongest audience priorities. There are a few things from some of the films that are most telling. Selma has no words about racism in its top 20, racism is the backdrop; viewers assume it without naming it. The Blind Side has no identity-based words at all reviewers avoid discussing race, reflecting the colorblind lens of its era. Hidden Figures includes African audiences directly name race and identity, indicating a shift toward openly acknowledging representation This evolution maps onto broader cultural discourse: from avoiding race to acknowledging race to actively demanding representation. We also see strong evidence of urgency through repetition in Do the Right Thing. Terms like racial, racism, black, people, and neighborhood repeatedly appear alongside emotionally weighted words like right and thing (from the title). Reviewers emphasize these themes because the film is a raw, unfiltered depiction of escalating racial tension, police violence, and community anger. The repetition reveals not only what viewers noticed but what they felt compelled to talk about police brutality, racial conflict, moral ambiguity, and community responsibility. Unlike earlier films where race language is softened or avoided (The Blind Side), here we see explicit naming of racism, identity, and violence. By the time reviewers discuss The Hate U Give, this kind of explicit vocabulary becomes even more common, showing a continued cultural shift toward naming racial issues directly rather than talking around them.</p>
 
             <figure class="viz-container">
                 <img src="images/the-hate-u-give/thehateugive-termfrequency.png"
                     alt="Bar chart showing the term frequency results for The Hate U Give reviews.">
-                <figcaption>Figure 10: Distribution of term frequencies across dataset for The Hate U Give</figcaption>
+                <figcaption>Distribution of term frequencies across dataset for The Hate U Give</figcaption>
             </figure>
 
             <p>The term-frequency patterns provide a clear timeline of how audiences have talked about race on screen over the last 15 years. Reviewers’ language shows how their priorities changed over time—from valuing a “good story,” to honoring “powerful history,” to finally seeking accurate visibility for overlooked communities.</p>
 
             <p>Comparing how reviewers discuss characters, race, performance, story ownership, and thematic impact across these films reinforces one major insight: audience attitudes toward racial narratives have significantly evolved, especially in the wake of increased civil-rights activism around 2020. Reviewers have become more socially aware, more critical of who is centered, and more attentive to the politics of representation—not just what stories are told, but who gets to tell them.</p>
+
+        <h3>Sentiment Analysis and Positive/Negative Scores</h3>
 
      <h2>Do The Right Thing</h2>
     <p>Analysis of 441 reviews revealed distinct sentiment patterns...</p>
@@ -367,11 +375,6 @@ print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
              alt="Pie chart showing the sentiment analysis results for The Blind Side reviews.">
         <figcaption>Figure 7: Distribution of sentiment scores across dataset for The Blind Side</figcaption>
     </figure>
-    <figure class="viz-container">
-        <img src="images/the-blind-side/blindside-termfrequency.png"
-                alt="Bar chart showing the term frequency results for The Blind Side reviews.">
-        <figcaption>Figure 8: Distribution of term frequencies across dataset for The Blind Side</figcaption>
-    </figure>
 
     <h2>The Hate U Give</h2>
     <p>Analysis of 700 reviews revealed distinct sentiment patterns...</p>
@@ -380,11 +383,6 @@ print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
              alt="Pie chart showing the sentiment analysis results for The Hate U Give reviews.">
         <figcaption>Figure 9: Distribution of sentiment scores across dataset for The Hate U Give</figcaption>
     </figure>
-    <figure class="viz-container">
-        <img src="images/the-hate-u-give/thehateugive-termfrequency.png"
-                alt="Bar chart showing the term frequency results for The Hate U Give reviews.">
-        <figcaption>Figure 10: Distribution of term frequencies across dataset for The Hate U Give</figcaption>
-    </figure>
 
     <h2>The Help</h2>
     <p>Analysis of 680 reviews revealed distinct sentiment patterns...</p>
@@ -392,11 +390,6 @@ print(f"Text: {most_negative['clean_text_sentiment'][:200]}...")</code></pre>
         <img src="images/the-help/thehelp-sentimentanalysis.png"
              alt="Pie chart showing the sentiment analysis results for The Help reviews.">
         <figcaption>Figure 11: Distribution of sentiment scores across dataset for The Help</figcaption>
-    </figure>
-    <figure class="viz-container">
-        <img src="images/the-help/thehelp-termfrequency.png"
-                alt="Bar chart showing the term frequency results for The Help reviews.">
-        <figcaption>Figure 12: Distribution of term frequencies across dataset for The Help</figcaption>
     </figure>
 
     </section>
