@@ -12,11 +12,10 @@
 <nav>
         <ul>
             <li><a href="#question">Research Hypothesis</a></li>
-            <li><a href="#data-and-methods">Data and Methods</a></li>
+            <li><a href="#methods">Methods</a></li>
             <li><a href="#timeline">Timeline</a></li>
             <li><a href="#background">Historical Background</a></li>
-            <li><a href="#analysis">Analysis</a></li>
-            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#charts">Charts</a></li>
             <li><a href="#findings">Findings</a></li>
             <li><a href="#reflection">Reflection</a></li>
             <li><a href="#cited">Works Cited</a></li>
@@ -37,11 +36,37 @@
 
     </section>
 
-    <section id="data-and-methods">
+    <section id="methods">
         
-        <h2>Data and Methods</h2>
+        <h2>Methods</h2>
 
-            <p>All of our data sets came from scrapes of the film's reviews on Rotten Tomatoes. The methods we used include VADER sentiment analysis to gauge the tone of the reviews over time, and term frequency analysis to analyze what the majority of reviewers were focused on. In order to make this accurate, we utilized code from previous homeworks with some alterations.</p>
+            <p>To investigate how audience attitudes toward race-oriented films have evolved over the last fifteen years, our project employed a mixed-methods approach combining computational text analysis with close interpretive reading. Our dataset consisted of publicly available viewer reviews scraped from online platforms, primarily using automated web-scraping tools to collect full-text reviews for Do the Right Thing, Selma, The Help, The Blind Side, Hidden Figures, and The Hate U Give. We selected these six films because they span a fifteen-year period, vary in genre and historical focus, and collectively reflect major shifts in public discourse on race, representation, and social justice.</p>
+
+        <h3>Data Collection</h3>
+        
+            <p>Using website scraping tools, we extracted all accessible user reviews that met minimum length requirements to ensure substantive content. Metadata fields (such as date, user rating, and username) were collected when available but excluded from analysis to protect privacy and maintain focus on textual patterns. In total, our data consisted of several thousand individual reviews. After scraping, we performed cleaning procedures including correcting encoding errors, and filtering out non-English text. Stopwords were selectively removed for certain analyses but retained for sentiment scoring, as negations (“not,” “never”) and intensifiers are important emotional markers.</p>
+                
+            <p>The computational methods used included term-frequency analysis, sentiment scoring, and close reading of extreme scores. Term-frequency helped identify which characters, ideas, and historical references appeared most often; sentiment analysis allowed us to measure the emotional tone of reviews; and close reading enabled us to assess the context of the reviews and what changed pre- and post-2020 where timestamps were available. While not all reviews included explicit dates, Rotten Tomatoes (our primary space for collecting data) maintained chronological order, allowing for approximate alignment with cultural context and contemporary discourse.</p>
+
+        <h3>Analytical Approach</h3>
+
+        <p>Our analysis was structured around three central questions:</p>
+            
+            <ol>
+                <li>Who and what do reviewers talk about most often? (term frequency)</li>
+                <li>How do reviewers feel about the films? (sentiment analysis)</li>
+                <li>What were the topics and context of extreme positive and negative reviews, and the shift over time, especially after 2020? (keyword and discourse comparison)</li>
+            </ol>
+
+            <p>After generating term-frequency lists, we examined the top twenty terms for each film and interpreted their narrative and cultural significance. Sentiment analysis was performed using VADR tool that assigns numerical emotional values to each sentence and then averages them across the data sets.</p>
+
+            <p>This computational layer was paired with close readings of the most positive or negative reviews, to contextualize the quantitative findings. This step was essential, as sentiment scores alone cannot explain why a review is positive or how historical references are being used.</p>
+
+        <h3>Limitations and Data Quality</h3>
+
+            <p>Our methods come with several limitations. First, online reviews are self-selected data: individuals motivated to write reviews may hold stronger opinions than the average viewer. Second, review platforms differ in audience demographics, which may skew tone or vocabulary. A third limitation involves time-stamping: not all reviews indicate when they were written, which affects our ability to precisely measure pre- versus post-2020 shifts. Finally, sentiment tools can misinterpret sarcasm, mixed emotions, or culturally specific language, leading to scores that flatten nuance.</p>
+            
+            <p>Data quality also varies significantly by film. Older films like Do the Right Thing have reviews written years after release, reflecting retrospective rather than immediate reactions. Newer films have more immediate responses influenced by contemporary political climates. Despite these limitations, the consistency of thematic patterns across platforms and films suggests that the dataset is robust enough to reveal meaningful trends.</p>
 
     </section>
 
