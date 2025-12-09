@@ -139,6 +139,19 @@ main section p {
     line-height: 1.8;
 }
 
+/* Ordered and unordered lists inside sections */
+main section ol,
+main section ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+main section ol li,
+main section ul li {
+    margin-bottom: 0.5rem;
+}
+
 /* =========================
    Classes for Variations
    ========================= */
