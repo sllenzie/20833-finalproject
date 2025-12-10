@@ -21,10 +21,12 @@ This project examines how film reviews of race-centered movies have evolved over
 
 Our analysis uses computational text analysis methods to examine film reviews scraped from Rotten Tomatoes:
 
-1. **VADER Sentiment Analysis** - Measures the emotional tone of reviews over time
-2. **Term Frequency Analysis** - Identifies what topics and themes reviewers focused on
+1. **Data Collection** - Web scraping of user reviews from Rotten Tomatoes with metadata cleaning and filtering
+2. **VADER Sentiment Analysis** - Measures the emotional tone of reviews using compound scores ranging from -1 (most negative) to +1 (most positive)
+3. **Term Frequency Analysis** - Identifies what topics, characters, and themes reviewers focused on most
+4. **Close Reading** - Contextual analysis of extreme positive and negative reviews to understand discourse shifts
 
-All analysis code and datasets are available in our [Google Drive folder](https://drive.google.com/drive/folders/1wwMq2huxN_oi2FskChBgsIB31mNGqzLL?usp=sharing).
+All Python notebooks with complete analysis code are available in the `python-notebooks/` folder and can be viewed through nbviewer links on the website. Additional datasets are available in our [Google Drive folder](https://drive.google.com/drive/folders/1wwMq2huxN_oi2FskChBgsIB31mNGqzLL?usp=sharing).
 
 ## How to Access
 
@@ -55,6 +57,16 @@ Then visit `http://localhost:8000` in your browser.
 - Install the "Live Server" extension
 - Right-click `index.html` and select "Open with Live Server"
 
+### Accessing Python Notebooks
+
+The complete Python code for sentiment analysis is available in the `python-notebooks/` folder. You can:
+
+1. **View online via nbviewer** - Click the links in the "Analysis Process" section of the website for beautifully rendered notebooks with syntax highlighting
+2. **Open locally in Jupyter** - Navigate to the `python-notebooks/` folder and open any `.ipynb` file in Jupyter Notebook or JupyterLab
+3. **View on GitHub** - Browse the notebooks directly in the repository for a basic rendered view
+
+Each notebook contains the complete analysis workflow for one film, including data loading, VADER sentiment analysis, and visualization generation.
+
 ## Project Structure
 
 ```
@@ -73,16 +85,29 @@ Then visit `http://localhost:8000` in your browser.
 │   ├── the-hate-u-give/
 │   ├── the-help/
 │   └── timeline/
+├── python-notebooks/   # Jupyter notebooks with sentiment analysis code
+│   ├── DoTheRightThing_SentimentAnalysis_WRIT20833.ipynb
+│   ├── Selma_SentimentAnalysis_WRIT20833.ipynb
+│   ├── TheHelp_SentimentAnalysis_WRIT20833.ipynb
+│   ├── TheBlindSide_SentimentAnalysis_WRIT20833.ipynb
+│   ├── HiddenFigures_SentimentAnalysis_WRIT20833.ipynb
+│   └── TheHateUGive_SentimentAnalysis_WRIT20833.ipynb
 └── README.md           # This file
 ```
 
 ## Key Features
 
-- **Interactive Timeline** - Explores historical context from 1820 to 2020
-- **Sentiment Analysis Visualizations** - Pie charts showing emotional tone distribution
-- **Term Frequency Analysis** - Bar charts revealing thematic focus areas
-- **Historical Background** - Contextualizes the Rodney King riots, Ferguson unrest, and George Floyd protests
-- **Global Perspective** - Examines how the 2020 protests resonated internationally
+- **Research Hypothesis** - Clear articulation of our central research question
+- **Comprehensive Methods Section** - Detailed explanation of data collection, analytical approaches, and limitations
+- **Interactive Timeline** - Explores historical context from 1820 to 2020 with visual elements
+- **Historical Background** - In-depth contextualization of the Rodney King riots (1992), Ferguson unrest (2014), and George Floyd protests (2020)
+- **Analysis Process** - Step-by-step breakdown of VADER sentiment analysis methodology
+- **Sentiment Analysis Visualizations** - Pie charts showing emotional tone distribution for each film
+- **Term Frequency Analysis** - Bar charts revealing thematic focus areas and key terms
+- **Findings** - Detailed analysis of results organized by film with visual data
+- **Python Code Access** - Direct links to Jupyter notebooks rendered via nbviewer for easy code review
+- **Interpretation and Reflection** - Discussion of how computational methods complement humanities-based interpretation
+- **Works Cited** - Comprehensive bibliography with clickable hyperlinks to all sources
 
 ## Contact
 
